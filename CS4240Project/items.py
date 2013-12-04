@@ -15,3 +15,6 @@ class DmozItem(Item):
 
 class eBayItem(Item):
     title = Field()
+
+class MacysItem(Item):
+    title = Field()
