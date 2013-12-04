@@ -19,6 +19,3 @@ class MininovaSpider(CrawlSpider):
         torrent['description'] = sel.xpath("//div[@id='description']").extract()
         torrent['size'] = sel.xpath("//div[@id='info-left']/p[2]/text()[2]").extract()
         return torrent
-
-# if name =='__main__':
-#     webCrawler = MininovaSpider()
