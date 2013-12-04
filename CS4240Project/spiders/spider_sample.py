@@ -3,7 +3,7 @@ from scrapy.contrib.spiders import CrawlSpider
 from scrapy.contrib.spiders import Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.linkextractors.sgml import Selector
-from scrapy_sample import TorrentItem
+from CS4240Project.items import TorrentItem
 
 class MininovaSpider(CrawlSpider):
     name = 'mininova'
@@ -20,5 +20,5 @@ class MininovaSpider(CrawlSpider):
         torrent['size'] = sel.xpath("//div[@id='info-left']/p[2]/text()[2]").extract()
         return torrent
 
-if name =='__main__':
-    webCrawler = MininovaSpider()
+# if name =='__main__':
+#     webCrawler = MininovaSpider()
