@@ -12,3 +12,6 @@ class DmozItem(Item):
     title = Field()
     link = Field()
     desc = Field()
+
+class eBayItem(Item):
+    title = Field()
