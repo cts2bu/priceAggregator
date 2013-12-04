@@ -7,3 +7,8 @@ class TorrentItem(Item):
     name = Field()
     description = Field()
     size = Field()
+
+class DmozItem(Item):
+    title = Field()
+    link = Field()
+    desc = Field()
