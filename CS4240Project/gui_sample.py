@@ -5,7 +5,6 @@ import sqlite3
 con = sqlite3.connect("prices.db")
 c = con.cursor()
 c.execute("create table if not exists prices (item, price)")
-pass
 def insert_into_table():
     response = raw_input("Would you like to input items? ")
     while response == 'yes' or raw_input == 'Yes':
