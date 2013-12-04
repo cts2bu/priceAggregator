@@ -19,4 +19,3 @@ class eBaySpider(BaseSpider):
            item['title'] = site.xpath('//h1/text()').extract()
            items.append(item)
        return items
-
