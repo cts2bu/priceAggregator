@@ -18,3 +18,4 @@ class eBayItem(Item):
 
 class MacysItem(Item):
     title = Field()
+
