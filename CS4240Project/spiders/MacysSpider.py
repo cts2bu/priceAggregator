@@ -22,7 +22,8 @@ class MacysSpider(CrawlSpider):
        for site in sites:
            item = MacysItem()
            item['title'] = site.xpath('a/text()').extract()
-           item['origprice'] = site.xpath('span/text()').extract()
+           item['saleprice'] = site.xpath('span[@class="priceSale"]/text()').extract()
+           item['origprice'] = site.xpath('span[not(contains(@class, "priceSale"))]/text()').extract()
            items.append(item)
        return items
 
