@@ -13,8 +13,9 @@ def insert_into_table():
     #     c.execute("insert into prices values (?, ?)", (input_item, input_price))
     #     response = raw_input("Would you like to input items? ")
     #     con.commit()
-    csvfile = open('Workbook1.csv', 'rb')
+    csvfile = open('derp.csv', 'rb')
     creader = csv.reader(csvfile, delimiter=',')
+    headers = creader.next()
     for t in creader:
         c.execute("insert into t values (?, ?)", t)
 

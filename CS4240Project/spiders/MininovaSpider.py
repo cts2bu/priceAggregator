@@ -20,8 +20,8 @@ class MininovaSpider(CrawlSpider):
         sel = Selector(response)
         torrent = TorrentItem()
         torrent['url'] = response.url
-        torrent['name'] = sel.xpath("//h1/text()").extract()
-        torrent['description'] = sel.xpath("//div[@id='description']").extract()
+        #torrent['name'] = sel.xpath("//h1/text()").extract()
+        #torrent['description'] = sel.xpath("//div[@id='description']").extract()
         torrent['size'] = sel.xpath("//div[@id='info-left']/p[2]/text()[2]").extract()
         # c.execute("insert into torrents values (?, ?, ?, ?)", (torrent['url'], torrent['name'], torrent['description'], torrent['size']))
         # con.commit()
