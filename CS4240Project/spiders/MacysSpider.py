@@ -1,9 +1,9 @@
-from scrapy.spider import BaseSpider
+from scrapy.contrib.spiders import CrawlSpider
 from scrapy.selector import Selector
 
 from CS4240Project.items import MacysItem
 
-class MacysSpider(BaseSpider):
+class MacysSpider(CrawlSpider):
    name = "macys"
    allowed_domains = ["macys.com"]
    start_urls = [

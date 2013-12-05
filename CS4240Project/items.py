@@ -19,3 +19,6 @@ class eBayItem(Item):
 class MacysItem(Item):
     title = Field()
 
+class CraigslistSampleItem:
+    title = Field()
+    link = Field()
