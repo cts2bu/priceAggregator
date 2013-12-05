@@ -18,6 +18,7 @@ class eBayItem(Item):
 
 class MacysItem(Item):
     title = Field()
+    origprice = Field()
 
 class CraigslistSampleItem:
     title = Field()
