@@ -25,3 +25,4 @@ class MacysSpider(CrawlSpider):
            item['origprice'] = site.xpath('span/text()').extract()
            items.append(item)
        return items
+
