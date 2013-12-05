@@ -17,13 +17,13 @@ class MacysSpider(CrawlSpider):
 
    def parse_items(self, response):
        sel = Selector(response)
-       sites = sel.xpath('//div/div[@class="innerWrapper"]/div')
+       sites = sel.xpath('//div/div[@class="innerWrapper"]')
        items = []
        for site in sites:
            item = MacysItem()
-           item['title'] = site.xpath('a/text()').extract()
-           item['saleprice'] = site.xpath('span[@class="priceSale"]/text()').extract()
-           item['origprice'] = site.xpath('span[not(contains(@class, "priceSale"))]/text()').extract()
+           item['title'] = site.xpath('div[@class="shortDescription"]/a/text()').extract()
+           item['saleprice'] = site.xpath('div[@class="prices"]/span[@class="priceSale"]/text()').extract()
+           item['origprice'] = site.xpath('div[@class="prices"]/span[not(contains(@class, "priceSale"))]/text()').extract()
            items.append(item)
        return items
 
