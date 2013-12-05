@@ -11,7 +11,7 @@ class MacysSpider(CrawlSpider):
        "http://www1.macys.com/shop/bed-bath/bedding-collections?id=7502"
    ]
 
-   rules = (Rule (SgmlLinkExtractor(allow=("index\d00\.html", ),restrict_xpaths=('//a[@class="arrowRight"]',))
+   rules = (Rule (SgmlLinkExtractor(allow=(),restrict_xpaths=('//a[@class="arrowRight"]',))
     , callback="parse_items", follow= True),
     )
 
