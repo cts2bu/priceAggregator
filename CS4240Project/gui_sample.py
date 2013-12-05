@@ -12,6 +12,7 @@ def insert_into_table():
         input_price = raw_input("Enter item price: ")
         c.execute("insert into prices values (?, ?)", (input_item, input_price))
         response = raw_input("Would you like to input items? ")
+        con.commit()
 def display_GUI(value_text, price_text):
     root = Tk()
     root.wm_title("Table")
