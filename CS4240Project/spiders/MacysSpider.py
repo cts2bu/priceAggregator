@@ -15,7 +15,7 @@ class MacysSpider(CrawlSpider):
     , callback="parse_items", follow= True),
     )
 
-   def parse(self, response):
+   def parse_items(self, response):
        sel = Selector(response)
        sites = sel.xpath('//div/div[@class="shortDescription"]')
        items = []
