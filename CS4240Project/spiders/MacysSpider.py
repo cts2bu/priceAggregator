@@ -19,4 +19,3 @@ class MacysSpider(CrawlSpider):
            item['title'] = site.xpath('a/text()').extract()
            items.append(item)
        return items
-   pass
