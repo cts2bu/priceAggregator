@@ -1,14 +1,19 @@
-from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 
 from CS4240Project.items import MacysItem
 
 class MacysSpider(CrawlSpider):
-   name = "macys"
+   name = "sstuff"
    allowed_domains = ["macys.com"]
    start_urls = [
        "http://www1.macys.com/shop/bed-bath/bedding-collections?id=7502"
    ]
+
+   rules = (Rule (SgmlLinkExtractor(allow=("index\d00\.html", ),restrict_xpaths=('//a[@class="arrowRight"]',))
+    , callback="parse_items", follow= True),
+    )
 
    def parse(self, response):
        sel = Selector(response)
