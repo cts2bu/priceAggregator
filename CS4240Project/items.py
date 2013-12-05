@@ -21,6 +21,14 @@ class MacysItem(Item):
     origprice = Field()
     saleprice = Field()
 
-class CraigslistSampleItem:
+class CraigslistSampleItem(Item):
     title = Field()
     link = Field()
+
+class AmazonItem(Item):
+    title = Field()
+    link = Field()
+
+class UItem(Item):
+    brand = Field()
+    title = Field()

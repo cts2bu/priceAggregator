@@ -21,4 +21,4 @@ class MySpider(CrawlSpider):
             item ["title"] = titles.select("a/text()").extract()
             item ["link"] = titles.select("a/@href").extract()
             items.append(item)
-        return(items)
+        return items
