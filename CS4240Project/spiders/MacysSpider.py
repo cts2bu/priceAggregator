@@ -1,7 +1,7 @@
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-
+import os
 from CS4240Project.items import MacysItem
 
 class MacysSpider(CrawlSpider):
@@ -26,4 +26,7 @@ class MacysSpider(CrawlSpider):
            item['origprice'] = site.xpath('div[@class="prices"]/span[not(contains(@class, "priceSale"))]/text()').extract()
            items.append(item)
        return items
+
+if __name__ == "__main__":
+    os.system('scrapy crawl sstuff -o macyscrape.json -t json')
 
