@@ -23,6 +23,7 @@ class WalmartSpider(CrawlSpider):
            item['price'] = site.xpath('div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            items.append(item)
         return items
+        pass
         # sites2 = sel.xpath('//div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]')
         # for site2 in sites2:
         #     item = WalMartItem()
