@@ -2,7 +2,6 @@ __author__ = 'piammoradi'
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-import os
 from priceAggregator.items import WalMartItem
 from priceAggregator.starturls import StartUrls
 
@@ -27,17 +26,3 @@ class WalmartSpider(CrawlSpider):
            item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            items.append(item)
         return items
-        # sites2 = sel.xpath('//div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]')
-        # for site2 in sites2:
-        #     item = WalMartItem()
-        #     item['price'] = site2.xpath('a[@class="bigPriceText2"]/text()').extract()
-        #     items.append(item)
-        # return items
-        # item = WalMartItem()
-        # item['title'] = sel.xpath('//div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink ListItemLink"]/text()').extract()
-        # item['price'] = sel.xpath('//div[@class="camelPrice"]/span/text()').extract()
-        # return item
-
-
-if __name__ == "__main__":
-    os.system('scrapy crawl walmart -o walmart.csv -t csv')

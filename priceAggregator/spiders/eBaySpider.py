@@ -1,7 +1,6 @@
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-import os
 from priceAggregator.items import eBayItem
 from priceAggregator.starturls import StartUrls
 
@@ -29,6 +28,3 @@ class eBaySpider(CrawlSpider):
            item['title'] = site.xpath('td/div/div/div/a/img/@alt').extract()
            items.append(item)
        return items
-
-if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay39.json -t json --nolog')

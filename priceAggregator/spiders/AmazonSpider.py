@@ -3,7 +3,6 @@ __author__ = 'Chris'
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-import os
 from priceAggregator.items import AmazonItem
 from priceAggregator.starturls import StartUrls
 
@@ -32,10 +31,6 @@ class AmazonSpider(CrawlSpider):
            item['title'] = site.xpath('h3/a/span[@class="lrg bold"]/text()').extract()
            items.append(item)
        return items
-
-
-if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape2.json -t json')
 
 
 
