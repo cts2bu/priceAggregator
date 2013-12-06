@@ -128,6 +128,9 @@ class walmart_gui:
             i += 1
         root.mainloop()
 
+GUI.register(amazon_gui)
+GUI.register(ebay_gui)
+GUI.register(walmart_gui)
 assert issubclass(amazon_gui, GUI)
 assert issubclass(ebay_gui, GUI)
 assert issubclass(walmart_gui, GUI)
