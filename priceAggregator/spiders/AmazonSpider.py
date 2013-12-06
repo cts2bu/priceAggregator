@@ -5,15 +5,12 @@ from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
 from priceAggregator.items import AmazonItem
+from priceAggregator.starturls import StartUrls
 
 class AmazonSpider(CrawlSpider):
    name = "amzn"
    allowed_domains = ["amazon.com"]
-   start_urls = [
-       #"http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=bath%20bedding&sprefix=bath+%2Caps&rh=i%3Aaps%2Ck%3Abath%20bedding",
-       "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=the%20life%20and%20opinions%20of%20tristram%20shandy%20gentleman%20penguin%20classics&sprefix=the+life+and+opinions+of+tristram+shandy+gentleman+penguin+classics%2Caps&rh=i%3Aaps%2Ck%3Athe%20life%20and%20opinions%20of%20tristram%20shandy%20gentleman%20penguin%20classics"
-       #"http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=the%20sorrows%20of%20young%20werther%20oxford%20classics"
-   ]
+   start_urls = StartUrls.amazonurls
 
    rules = (
         Rule (SgmlLinkExtractor(allow=("ref=sr_pg_*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
@@ -38,7 +35,7 @@ class AmazonSpider(CrawlSpider):
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape25.json -t json')
+    os.system('scrapy crawl amzn -o amazonscrape2.json -t json')
 
 
 

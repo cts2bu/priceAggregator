@@ -4,11 +4,13 @@ from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
 from priceAggregator.items import WalMartItem
+from priceAggregator.starturls import StartUrls
 
 class WalmartSpider(CrawlSpider):
     name = "walmart"
     allowed_domains = ["walmart.com"]
-    start_urls = ["http://www.walmart.com/search/search-ng.do?ic=16_0&Find=Find&search_query=jvc+camcorder&Find=Find&search_constraint=0"]
+    start_urls = StartUrls.walmarturls
+
     rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
     , callback="parse_items", follow= True),
     )
