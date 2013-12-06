@@ -3,13 +3,12 @@ from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
 from CS4240Project.items import eBayItem
+from CS4240Project.starturls import StartUrls
 
 class eBaySpider(CrawlSpider):
    name = "ebay"
    allowed_domains = ["ebay.com"]
-   start_urls = [
-       "http://www.ebay.com/sch/i.html?_trksid=p2050601.m570.l1313.TR0.TRC0.Xheritage+door+handle+no+key+pad&_nkw=heritage+door+handle+no+key+pad&_sacat=0&_from=R40"
-   ]
+   start_urls = StartUrls.ebayurls
 
    rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//td[@class="pages"]',))
     , callback="parse_start_url", follow= True),
@@ -32,4 +31,4 @@ class eBaySpider(CrawlSpider):
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay32.json -t json')
+    os.system('scrapy crawl ebay -o ebay33.json -t json --nolog')
