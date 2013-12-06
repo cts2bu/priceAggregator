@@ -29,6 +29,8 @@ class AmazonItem(Item):
     title = Field()
     link = Field()
 
-class UItem(Item):
-    brand = Field()
+class WalMartItem(Item):
     title = Field()
+    link = Field()
+    origprice = Field()
+    saleprice = Field()
