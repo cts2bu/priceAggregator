@@ -1,18 +1,29 @@
-from scrapy.spider import BaseSpider
+from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
-
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+import os
 from CS4240Project.items import eBayItem
 
-class eBaySpider(BaseSpider):
+class eBaySpider(CrawlSpider):
    name = "ebay"
-   allowed_domains = ["macys.com"]
+   allowed_domains = ["ebay.com"]
    start_urls = [
-       "http://www1.macys.com/shop/product/hotel-collection-modern-trellis-bedding-collection?ID=1121718&CategoryID=7502"
+       "http://www.ebay.com/sch/i.html?_trksid=p2050601.m570.l1313.TR0.TRC0.Xheritage+door+handle&_nkw=heritage+door+handle&_sacat=0&_from=R40"
    ]
 
-   def parse(self, response):
+   rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//td[@class="pages"]',))
+    , callback="parse_items", follow= True),
+    )
+
+   def parse_items(self, response):
        sel = Selector(response)
-       site = sel.xpath('//ul/li')
-       item = eBayItem()
-       item['title'] = site.xpath('//h1/text()').extract()
-       return item
+       sites = sel.xpath('//h4')
+       items = []
+       for site in sites:
+           item = eBayItem()
+           item['title'] = site.xpath('a/text()').extract()
+           items.append(item)
+       return items
+
+if __name__ == "__main__":
+    os.system('scrapy crawl ebay -o ebay10.json -t json')

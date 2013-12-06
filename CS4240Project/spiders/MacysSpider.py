@@ -8,7 +8,7 @@ class MacysSpider(CrawlSpider):
    name = "sstuff"
    allowed_domains = ["macys.com"]
    start_urls = [
-       "http://www1.macys.com/shop/bed-bath/bedding-collections?id=7502"
+       "http://www1.macys.com/shop/search?keyword=bedding+collections"
    ]
 
    rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//div[@id="paginateBottom"]',))
@@ -17,16 +17,14 @@ class MacysSpider(CrawlSpider):
 
    def parse_items(self, response):
        sel = Selector(response)
-       sites = sel.xpath('//div/div[@class="innerWrapper"]')
+       sites = sel.xpath('//div')
        items = []
        for site in sites:
            item = MacysItem()
-           item['title'] = site.xpath('div[@class="shortDescription"]/a/text()').extract()
-           item['saleprice'] = site.xpath('div[@class="prices"]/span[@class="priceSale"]/text()').extract()
-           item['origprice'] = site.xpath('div[@class="prices"]/span[not(contains(@class, "priceSale"))]/text()').extract()
+           item['title'] = site.xpath('span/text()').extract()
            items.append(item)
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl sstuff -o macyscrape.json -t json')
+    os.system('scrapy crawl sstuff -o macyscrape15.json -t json')
 
