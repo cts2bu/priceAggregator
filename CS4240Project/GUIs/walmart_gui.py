@@ -8,7 +8,7 @@ con.text_factory = str
 c.execute("create table if not exists walmart (col1, col2, col3, col4)")
 
 def insert_into_table():
-    csvfile = open('walmart.csv', 'rb')
+    csvfile = open('../walmart.csv', 'rb')
     creader = csv.reader(csvfile, delimiter=',')
     headers = creader.next()
     for t in creader:
