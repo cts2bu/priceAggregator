@@ -1,9 +1,12 @@
 __author__ = 'Christopher'
 
+from CSVParser import CSVParser
 import csv
 
-def printCSV():
-        csvfile = open('../spiders/amazonscrape.csv', "rb")
+class AmazonCSVParser(CSVParser):
+
+    def printCSV(self):
+        csvfile = open('../spiders/amazons1.csv', "rb")
         reader = csv.reader(csvfile)
         reader.next() #skip the first title line
         for row in reader:
@@ -15,7 +18,7 @@ def printCSV():
             title = row[3]
             print title + ' ' + mainPrice + ' ' + link
 
-
 if __name__ == "__main__":
-    printCSV()
+    amznparse = AmazonCSVParser()
+    amznparse.printCSV()
 
