@@ -1,8 +1,6 @@
-import os
-
 class StartUrls():
 
-    searches = ["thai diet", "slug soda rare"]
+    searches = ["thai"]
 
     ebayurls = []
     amazonurls = []
@@ -20,7 +18,3 @@ class StartUrls():
 
         url = "http://www.walmart.com/search/search-ng.do?ic=16_0&Find=Find&search_query="+search
         walmarturls.append(url)
-
-
-if __name__ == "__main__":
-    os.system('scrapy crawl walmart -o walmart.csv -t csv')

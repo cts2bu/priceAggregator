@@ -10,7 +10,8 @@ class WalmartSpider(CrawlSpider):
     allowed_domains = ["walmart.com"]
     start_urls = StartUrls.walmarturls
 
-    rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
+    rules = (
+        Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-3]\?*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
     , callback="parse_items", follow= True),
     )
 
