@@ -30,6 +30,7 @@ class AmazonItem(Item):
     title = Field()
     link = Field()
     price = Field()
+    price2 = Field()
 
 class WalMartItem(Item):
     title = Field()

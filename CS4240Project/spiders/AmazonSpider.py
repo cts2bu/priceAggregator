@@ -10,7 +10,7 @@ class AmazonSpider(CrawlSpider):
    name = "amzn"
    allowed_domains = ["amazon.com"]
    start_urls = [
-       "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=bath+bedding&rh=i%3Aaps%2Ck%3Abath+bedding"
+       "http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=manual%20woodworkers%20%26%20weavers%20placemat%20set%20of%204"
    ]
 
    rules = (
@@ -21,17 +21,18 @@ class AmazonSpider(CrawlSpider):
    def parse_items(self, response):
 
        sel = Selector(response)
-       sites = sel.xpath('//ul/li[@class="newp"]')
+       sites = sel.xpath('//div[starts-with(@id,"result")]')
        items = []
        for site in sites:
            item = AmazonItem()
-           item['link'] = site.xpath('a/@href').extract()
-           item['price'] = site.xpath('a/span/text()').extract()
-           item['title'] = site.xpath('//h3/a/span[@class="lrg bold"]/text()').extract()
+           item['link'] = site.xpath('h3/a/@href').extract()
+           item['price'] = site.xpath('ul/li[@class="med grey mkp2"]/a/span[@class="price bld"]/text()').extract()
+           item['price2'] = site.xpath('ul/li[@class="newp"]/a/span/text()').extract()
+           item['title'] = site.xpath('h3/a/span[@class="lrg bold"]/text()').extract()
            items.append(item)
        return items
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape.json -t json')
+    os.system('scrapy crawl amzn -o amazonscrape22.json -t json')
 
