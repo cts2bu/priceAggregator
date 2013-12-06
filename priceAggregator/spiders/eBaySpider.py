@@ -27,5 +27,6 @@ class eBaySpider(CrawlSpider):
            item['price2'] = site.xpath('td[@class="prc"]/div[@class="g-b"]/text()').extract()
            item['link'] = site.xpath('td/div/h4/a/@href').extract()
            item['title'] = site.xpath('td/div/div/div/a/img/@alt').extract()
-           items.append(item)
+           if item['price'] or item['price2']: #pre-filter items with no prices
+                items.append(item)
        return items
