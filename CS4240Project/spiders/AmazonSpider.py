@@ -36,3 +36,4 @@ class AmazonSpider(CrawlSpider):
 if __name__ == "__main__":
     os.system('scrapy crawl amzn -o amazonscrape23.json -t json')
 
+
