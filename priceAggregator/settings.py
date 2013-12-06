@@ -1,4 +1,4 @@
-# Scrapy settings for CS4240Project project
+# Scrapy settings for priceAggregator project
 #
 # For simplicity, this file contains only the most important settings by
 # default. All the other settings are documented here:
