@@ -19,7 +19,8 @@ class WalmartSpider(CrawlSpider):
         items = []
         for site in sites:
            item = WalMartItem()
-           item['title'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink ListItemLink"]/text()').extract()
+           item['title'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink GridItemLink"]/@title').extract()
+           item['link'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink GridItemLink"]/@href').extract()
            item['price'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            items.append(item)
@@ -38,4 +39,4 @@ class WalmartSpider(CrawlSpider):
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl walmart -o walmart8.json -t json')
+    os.system('scrapy crawl walmart -o walmart12.json -t json')
