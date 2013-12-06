@@ -29,6 +29,7 @@ class CraigslistSampleItem(Item):
 class AmazonItem(Item):
     title = Field()
     link = Field()
+    price = Field()
 
 class WalMartItem(Item):
     title = Field()

@@ -19,15 +19,19 @@ class AmazonSpider(CrawlSpider):
     )
 
    def parse_items(self, response):
+
        sel = Selector(response)
-       sites = sel.xpath('//ul/li[@class="newp"]/a')
+       sites = sel.xpath('//ul/li[@class="newp"]')
        items = []
        for site in sites:
            item = AmazonItem()
-           item['title'] = site.xpath('span/text()').extract()
+           item['link'] = site.xpath('a/@href').extract()
+           item['price'] = site.xpath('a/span/text()').extract()
+           item['title'] = site.xpath('//h3/a/span[@class="lrg bold"]/text()').extract()
            items.append(item)
        return items
 
+
 if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape5.json -t json')
+    os.system('scrapy crawl amzn -o amazonscrape.json -t json')
 
