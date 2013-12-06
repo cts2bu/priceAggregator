@@ -17,8 +17,3 @@ class AmazonCSVParser(CSVParser):
             link = row[2]
             title = row[3]
             print title + ' ' + mainPrice + ' ' + link
-
-if __name__ == "__main__":
-    amznparse = AmazonCSVParser()
-    amznparse.printCSV()
-

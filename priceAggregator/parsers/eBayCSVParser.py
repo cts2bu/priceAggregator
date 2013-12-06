@@ -17,7 +17,3 @@ class eBayCSVParser(CSVParser):
             link = row[2]
             title = row[3]
             print title + ' ' + mainPrice + ' ' + link
-
-if __name__ == "__main__":
-    ebayparse = eBayCSVParser()
-    ebayparse.printCSV()

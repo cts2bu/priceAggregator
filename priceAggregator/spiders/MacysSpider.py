@@ -25,6 +25,3 @@ class MacysSpider(CrawlSpider):
            items.append(item)
        return items
 
-if __name__ == "__main__":
-    os.system('scrapy crawl sstuff -o macyscrape15.json -t json')
-
