@@ -1,6 +1,6 @@
 class StartUrls():
 
-    searches = ["thai"]
+    searches = ["thai", "desk", "paper"]
 
     ebayurls = []
     amazonurls = []

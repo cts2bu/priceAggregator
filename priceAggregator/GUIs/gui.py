@@ -9,14 +9,13 @@ from priceAggregator.parsers.WalmartCSVParser import WalmartCSVParser
 class GUI(object):
     def __init__(self, name):
         self.name = name
-        #self.con = sqlite3.connect(self.name+".db")
-        self.con = sqlite3.connect(":memory:")
+        self.con = sqlite3.connect("csv.db")
         self.c = self.con.cursor()
         self.con.text_factory = str
         self.c.execute("create table if not exists " + name + " (col1, col2, col3, col4)")
 
     def insert_into_table(self):
-        csvfile = open("../../" + self.name + ".csv", 'rb')
+        csvfile = open("../spiders/" + self.name + "scrape.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:
@@ -29,16 +28,15 @@ class GUI(object):
         l.pack()
         for row in self.c.execute("select * from " + self.name):
             if self.name == 'amazon':
-                Label(root, text = AmazonCSVParser().printCSV(row)).pack()
-                #a.pack()
+                a = Label(root, text = AmazonCSVParser().printCSV(row))
+                a.pack()
             elif self.name == 'ebay':
-                Label(root, text = eBayCSVParser().printCSV(row)).pack()
-                #a.pack()
+                a = Label(root, text = eBayCSVParser().printCSV(row))
+                a.pack()
             else:
-                Label(root, text = WalmartCSVParser().printCSV(row)).pack()
-                #a.pack()
+                a = Label(root, text = WalmartCSVParser().printCSV(row))
+                a.pack()
         root.mainloop()
-        self.con.close()
 
 
 

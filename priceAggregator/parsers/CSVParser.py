@@ -8,3 +8,6 @@ class CSVParser():
     @abstractmethod
     def printCSV(self, row):
         print "This won't ever be called"
+
+    def getLink(self, row):
+        return row[2]
