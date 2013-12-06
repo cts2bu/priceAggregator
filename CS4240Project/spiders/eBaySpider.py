@@ -8,12 +8,15 @@ class eBaySpider(CrawlSpider):
    name = "ebay"
    allowed_domains = ["ebay.com"]
    start_urls = [
-       "http://www.ebay.com/sch/i.html?_trksid=p2050601.m570.l1313.TR0.TRC0.Xheritage+door+handle&_nkw=heritage+door+handle&_sacat=0&_from=R40"
+       "http://www.ebay.com/sch/i.html?_trksid=p2050601.m570.l1313.TR0.TRC0.Xheritage+door+handle+no+key+pad&_nkw=heritage+door+handle+no+key+pad&_sacat=0&_from=R40"
    ]
 
    rules = (Rule (SgmlLinkExtractor(restrict_xpaths=('//td[@class="pages"]',))
-    , callback="parse_items", follow= True),
+    , callback="parse_start_url", follow= True),
     )
+
+   def parse_start_url(self, response):
+        return self.parse_items(response)
 
    def parse_items(self, response):
        sel = Selector(response)
@@ -29,4 +32,4 @@ class eBaySpider(CrawlSpider):
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay.csv -t csv')
+    os.system('scrapy crawl ebay -o ebay32.json -t json')
