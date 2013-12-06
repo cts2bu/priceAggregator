@@ -17,13 +17,14 @@ class eBaySpider(CrawlSpider):
 
    def parse_items(self, response):
        sel = Selector(response)
-       sites = sel.xpath('//h4')
+       sites = sel.xpath('//tr[@itemprop="offers"]')
        items = []
        for site in sites:
            item = eBayItem()
-           item['title'] = site.xpath('a/text()').extract()
+           item['price'] = site.xpath('td[@class="prc"]/div/div/text()').extract()
+           item['title'] = site.xpath('td/div/h4/a/text()').extract()
            items.append(item)
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay10.json -t json')
+    os.system('scrapy crawl ebay -o ebay25.json -t json')
