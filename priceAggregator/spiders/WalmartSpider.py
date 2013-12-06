@@ -11,7 +11,7 @@ class WalmartSpider(CrawlSpider):
     start_urls = StartUrls.walmarturls
 
     rules = (
-        Rule (SgmlLinkExtractor(allow=("ic=16_[1-64]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
+        Rule (SgmlLinkExtractor(allow=("ic=16_[1-128]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
     , callback="parse_items", follow= True),
     )
 
@@ -25,5 +25,6 @@ class WalmartSpider(CrawlSpider):
            item['link'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink GridItemLink"]/@href').extract()
            item['price'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
-           items.append(item)
+           if item['price'] or item['price2']:
+               items.append(item)
         return items

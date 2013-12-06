@@ -10,7 +10,7 @@ class eBaySpider(CrawlSpider):
    start_urls = StartUrls.ebayurls
 
    rules = (
-        Rule (SgmlLinkExtractor(allow=("_pgn=[2-3]\&*", ), restrict_xpaths=('//td[@class="pages"]',))
+        Rule (SgmlLinkExtractor(allow=("_pgn=[2-2]\&*", ), restrict_xpaths=('//td[@class="pages"]',))
     , callback="parse_start_url", follow= True),
     )
 

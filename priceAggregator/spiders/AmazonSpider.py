@@ -12,7 +12,7 @@ class AmazonSpider(CrawlSpider):
    start_urls = StartUrls.amazonurls
 
    rules = (
-        Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-3]\?*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
+        Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-7]\?*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
     , callback="parse_start_url", follow= True),
     )
 
