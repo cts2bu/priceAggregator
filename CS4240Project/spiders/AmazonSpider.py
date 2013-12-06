@@ -21,7 +21,7 @@ class AmazonSpider(CrawlSpider):
    def parse_items(self, response):
 
        sel = Selector(response)
-       sites = sel.xpath('//div[starts-with(@id,"result")]')
+       sites = sel.xpath('//div[starts-with(@id,"result_")]')
        items = []
        for site in sites:
            item = AmazonItem()
@@ -34,6 +34,6 @@ class AmazonSpider(CrawlSpider):
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape24.json -t json')
+    os.system('scrapy crawl amzn -o amazonscrape25.json -t json')
 
 
