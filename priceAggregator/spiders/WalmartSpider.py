@@ -11,7 +11,7 @@ class WalmartSpider(CrawlSpider):
     start_urls = StartUrls.walmarturls
 
     rules = (
-        Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-3]\?*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
+        Rule (SgmlLinkExtractor(allow=("ic=16_[1-64]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
     , callback="parse_items", follow= True),
     )
 
