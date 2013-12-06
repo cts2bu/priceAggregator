@@ -16,6 +16,8 @@ class DmozItem(Item):
 class eBayItem(Item):
     title = Field()
     price = Field()
+    price2 = Field()
+    link = Field()
 
 class MacysItem(Item):
     title = Field()

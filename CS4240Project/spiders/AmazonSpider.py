@@ -10,8 +10,7 @@ class AmazonSpider(CrawlSpider):
    name = "amzn"
    allowed_domains = ["amazon.com"]
    start_urls = [
-       #"http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=manual%20woodworkers%20%26%20weavers%20placemat%20set%20of%204"
-       "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=bath%20bedding&sprefix=bath+bedd%2Caps&rh=i%3Aaps%2Ck%3Abath%20bedding"
+       "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=bath%20bedding&sprefix=bath+%2Caps&rh=i%3Aaps%2Ck%3Abath%20bedding"
    ]
 
    rules = (
@@ -35,4 +34,5 @@ class AmazonSpider(CrawlSpider):
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl amzn -o amazonscrape.json -t json')
+    os.system('scrapy crawl amzn -o amazonscrape23.json -t json')
+

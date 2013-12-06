@@ -21,10 +21,12 @@ class eBaySpider(CrawlSpider):
        items = []
        for site in sites:
            item = eBayItem()
-           item['price'] = site.xpath('td[@class="prc"]/div/div/text()').extract()
+           item['price'] = site.xpath('td[@class="prc"]/div/div[@class="g-b"]/text()').extract()
+           item['price2'] = site.xpath('td[@class="prc"]/div[@class="g-b"]/text()').extract()
+           item['link'] = site.xpath('td/div/h4/a/@href').extract()
            item['title'] = site.xpath('td/div/h4/a/text()').extract()
            items.append(item)
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay25.json -t json')
+    os.system('scrapy crawl ebay -o ebay30.json -t json')
