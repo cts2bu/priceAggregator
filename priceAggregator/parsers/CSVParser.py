@@ -6,5 +6,5 @@ class CSVParser():
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def printCSV(self):
+    def printCSV(self, row):
         print "This won't ever be called"
