@@ -10,16 +10,20 @@ class AmazonSpider(CrawlSpider):
    name = "amzn"
    allowed_domains = ["amazon.com"]
    start_urls = [
-       "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=bath%20bedding&sprefix=bath+%2Caps&rh=i%3Aaps%2Ck%3Abath%20bedding"
+       #"http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=bath%20bedding&sprefix=bath+%2Caps&rh=i%3Aaps%2Ck%3Abath%20bedding",
+       "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=the%20life%20and%20opinions%20of%20tristram%20shandy%20gentleman%20penguin%20classics&sprefix=the+life+and+opinions+of+tristram+shandy+gentleman+penguin+classics%2Caps&rh=i%3Aaps%2Ck%3Athe%20life%20and%20opinions%20of%20tristram%20shandy%20gentleman%20penguin%20classics"
+       #"http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=the%20sorrows%20of%20young%20werther%20oxford%20classics"
    ]
 
    rules = (
         Rule (SgmlLinkExtractor(allow=("ref=sr_pg_*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
-    , callback="parse_items", follow= True),
+    , callback="parse_start_url", follow= True),
     )
 
-   def parse_items(self, response):
+   def parse_start_url(self, response):
+        return self.parse_items(response)
 
+   def parse_items(self, response):
        sel = Selector(response)
        sites = sel.xpath('//div[starts-with(@id,"result_")]')
        items = []
