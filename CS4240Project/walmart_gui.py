@@ -17,7 +17,7 @@ def insert_into_table():
 def display_GUI(col1_text, col2_text, col3_text, col4_text):
     root = Tk()
     root.wm_title("Table")
-    l = Label(root, text = "Col1, Col2, Col3, Col4")
+    l = Label(root, text = "title, link, price, price2")
     l.pack()
     i = 0
     while i < len(col1_text):
