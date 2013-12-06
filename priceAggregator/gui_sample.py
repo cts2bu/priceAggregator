@@ -3,7 +3,6 @@ from Tkinter import *
 import csv, sqlite3, json
 from abc import ABCMeta
 
-
 class GUI:
     __metaclass__ = ABCMeta
     def __init__(self):
@@ -11,7 +10,7 @@ class GUI:
         self.c = self.con.cursor()
         self.c.execute("create table if not exists t(col1, col2)")
     def insert_into_table(self):
-        csvfile = open("ebay.csv", 'rb')
+        csvfile = open("sample.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:
@@ -39,7 +38,7 @@ class amazon_gui:
         self.con.text_factory = str
         self.c.execute("create table if not exists amazon (col1, col2, col3, col4)")
     def insert_into_table(self):
-        csvfile = open("ebay.csv", 'rb')
+        csvfile = open("amazon.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:
@@ -103,7 +102,7 @@ class walmart_gui:
         self.con.text_factory = str
         self.c.execute("create table if not exists walmart (col1, col2, col3, col4)")
     def insert_into_table(self):
-        csvfile = open("ebay.csv", 'rb')
+        csvfile = open("walmart.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:
