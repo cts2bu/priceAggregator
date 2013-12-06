@@ -29,7 +29,8 @@ class AmazonSpider(CrawlSpider):
            item['price'] = site.xpath('ul/li[@class="med grey mkp2"]/a/span[@class="price bld"]/text()').extract()
            item['price2'] = site.xpath('ul/li[@class="newp"]/a/span[@class="bld lrg red"]/text()').extract()
            item['title'] = site.xpath('h3/a/span[@class="lrg bold"]/text()').extract()
-           items.append(item)
+           if item['price'] or item['price2']: #pre-filter items with no prices
+                items.append(item)
        return items
 
 
