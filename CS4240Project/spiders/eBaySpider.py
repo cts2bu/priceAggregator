@@ -29,4 +29,4 @@ class eBaySpider(CrawlSpider):
        return items
 
 if __name__ == "__main__":
-    os.system('scrapy crawl ebay -o ebay31.json -t json')
+    os.system('scrapy crawl ebay -o ebay.csv -t csv')

@@ -25,7 +25,6 @@ class WalmartSpider(CrawlSpider):
            item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            items.append(item)
         return items
-        pass
         # sites2 = sel.xpath('//div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]')
         # for site2 in sites2:
         #     item = WalMartItem()
@@ -39,4 +38,4 @@ class WalmartSpider(CrawlSpider):
 
 
 if __name__ == "__main__":
-    os.system('scrapy crawl walmart -o walmart12.json -t json')
+    os.system('scrapy crawl walmart -o walmart.csv -t csv')
