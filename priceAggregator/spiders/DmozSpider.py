@@ -3,7 +3,7 @@ __author__ = 'Chris'
 from scrapy.spider import BaseSpider
 from scrapy.selector import Selector
 
-from CS4240Project.items import DmozItem
+from priceAggregator.items import DmozItem
 
 class DmozSpider(BaseSpider):
    name = "dmoz"

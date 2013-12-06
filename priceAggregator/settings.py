@@ -6,10 +6,10 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
 
-BOT_NAME = 'CS4240Project'
+BOT_NAME = 'priceAggregator'
 
-SPIDER_MODULES = ['CS4240Project.spiders']
-NEWSPIDER_MODULE = 'CS4240Project.spiders'
+SPIDER_MODULES = ['priceAggregator.spiders']
+NEWSPIDER_MODULE = 'priceAggregator.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'CS4240Project (+http://www.yourdomain.com)'
+#USER_AGENT = 'priceAggregator (+http://www.yourdomain.com)'

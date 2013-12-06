@@ -2,8 +2,8 @@ from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
-from CS4240Project.items import eBayItem
-from CS4240Project.starturls import StartUrls
+from priceAggregator.items import eBayItem
+from priceAggregator.starturls import StartUrls
 
 class eBaySpider(CrawlSpider):
    name = "ebay"

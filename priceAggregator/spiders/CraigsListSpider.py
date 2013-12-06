@@ -1,7 +1,7 @@
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
-from CS4240Project.items import CraigslistSampleItem
+from priceAggregator.items import CraigslistSampleItem
 
 class MySpider(CrawlSpider):
     name = "craigs"

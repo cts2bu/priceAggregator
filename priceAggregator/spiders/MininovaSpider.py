@@ -3,7 +3,7 @@ from scrapy.contrib.spiders import CrawlSpider
 from scrapy.contrib.spiders import Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.linkextractors.sgml import Selector
-from CS4240Project.items import TorrentItem
+from priceAggregator.items import TorrentItem
 import sqlite3
 
 

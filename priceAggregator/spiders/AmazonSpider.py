@@ -4,7 +4,7 @@ from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
-from CS4240Project.items import AmazonItem
+from priceAggregator.items import AmazonItem
 
 class AmazonSpider(CrawlSpider):
    name = "amzn"

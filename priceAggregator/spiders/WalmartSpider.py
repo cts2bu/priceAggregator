@@ -3,7 +3,7 @@ from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 import os
-from CS4240Project.items import WalMartItem
+from priceAggregator.items import WalMartItem
 
 class WalmartSpider(CrawlSpider):
     name = "walmart"
