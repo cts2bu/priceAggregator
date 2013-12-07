@@ -38,17 +38,23 @@ class GUI(Frame):
         creader.next()
         for t in creader:
             self.c.execute("insert into " + self.name + " values (?, ?, ?, ?)", t)
+
         i = 0
+
+        parser = None
+
+        if self.name == 'amazon':
+            parser = AmazonCSVParser()
+
+        elif self.name == 'ebay':
+            parser = eBayCSVParser()
+
+        else:
+            parser = WalmartCSVParser()
+
         for row in self.c.execute("select * from " + self.name):
-            if self.name == 'amazon':
-                url = AmazonCSVParser().getLink(row)
-                label = Label(self.frame, text = AmazonCSVParser().printCSV(row), relief = "solid")
-            elif self.name == 'ebay':
-                url = eBayCSVParser().getLink(row)
-                label = Label(self.frame, text = eBayCSVParser().printCSV(row), relief = "solid")
-            else:
-                url = WalmartCSVParser().getLink(row)
-                label = Label(self.frame, text = WalmartCSVParser().printCSV(row), relief = "solid")
+            url = parser.getLink(row)
+            label = Label(self.frame, text = parser.printCSV(row), relief = "solid")
             label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
             label.configure(foreground="blue", underline=True)
             label.grid(row=i, column=1)
