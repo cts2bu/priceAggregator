@@ -55,7 +55,7 @@ class GUI(Frame):
                 label.grid(row=i, column=1)
                 i = i + 1
             else:
-                url = WalmartCSVParser().getLink(row)
+                url = "http://www.walmart.com" + WalmartCSVParser().getLink(row)
                 label = Label(self.frame, text = WalmartCSVParser().printCSV(row), relief = "solid")
                 label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
                 label.configure(foreground="blue", underline=True)
