@@ -1,8 +1,8 @@
 __author__ = 'piammoradi'
 from Tkinter import *
-from amazon_gui import amazon_gui
-from ebay_gui import ebay_gui
-from walmart_gui import walmart_gui
+from AmazonGUI import AmazonGUI
+from eBayGUI import eBayGUI
+from WalmartGUI import WalmartGUI
 class run_GUI():
     def show_menu(self):
         root = Tk()
@@ -16,15 +16,18 @@ class run_GUI():
         c.pack()
         root.mainloop()
     def show_amazon(self):
-        amazon = amazon_gui()
-        amazon.insert_into_table()
-        amazon.display_GUI()
+        root = Tk()
+        gui = AmazonGUI(root)
+        gui.pack(side="top", fill="both", expand=True)
+        root.mainloop()
     def show_ebay(self):
-        ebay = ebay_gui()
-        ebay.insert_into_table()
-        ebay.display_GUI()
+        root = Tk()
+        gui = eBayGUI(root)
+        gui.pack(side="top", fill="both", expand=True)
+        root.mainloop()
     def show_walmart(self):
-        walmart = walmart_gui()
-        walmart.insert_into_table()
-        walmart.display_GUI()
+        root = Tk()
+        gui = WalmartGUI(root)
+        gui.pack(side="top", fill="both", expand=True)
+        root.mainloop()
 run_GUI().show_menu()
