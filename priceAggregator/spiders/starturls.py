@@ -1,7 +1,6 @@
 class StartUrls():
-    def __init__(self, search):
-        self.search = search
-        self.search.replace(" ","+")
+    def __init__(self, input):
+        self.search = input.replace(" ", "+")
         self.ebayurls = []
         self.amazonurls = []
         self.walmarturls = []
