@@ -26,7 +26,6 @@ class GUI(object):
         webbrowser.open(url)
 
     def display_GUI(self):
-        url_list = []
         root = Tk()
         root.wm_title("Table")
 
