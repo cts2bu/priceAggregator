@@ -4,22 +4,25 @@ from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from priceAggregator.items import AmazonItem
-from priceAggregator.spiders.starturls import StartUrls
 
 class AmazonSpider(CrawlSpider):
-   name = "amzn"
-   allowed_domains = ["amazon.com"]
-   start_urls = StartUrls.amazonurls
+    def __init__(self, startURLs):
+        start_urls = startURLs
 
-   rules = (
-        Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-7]\?*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
-    , callback="parse_start_url", follow= True),
-    )
 
-   def parse_start_url(self, response):
+    name = "amzn"
+    allowed_domains = ["amazon.com"]
+
+
+    rules = (
+            Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-7]\?*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
+        , callback="parse_start_url", follow= True),
+     )
+
+    def parse_start_url(self, response):
         return self.parse_items(response)
 
-   def parse_items(self, response):
+    def parse_items(self, response):
        sel = Selector(response)
        sites = sel.xpath('//div[starts-with(@id,"result_")]')
        items = []

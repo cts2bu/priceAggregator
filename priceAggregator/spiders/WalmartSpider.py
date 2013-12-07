@@ -6,9 +6,11 @@ from priceAggregator.items import WalMartItem
 from priceAggregator.spiders.starturls import StartUrls
 
 class WalmartSpider(CrawlSpider):
+    def __init__(self, startURLs):
+        start_urls = startURLs
     name = "walmart"
     allowed_domains = ["walmart.com"]
-    start_urls = StartUrls.walmarturls
+    #start_urls = StartUrls.walmarturls
 
     rules = (
         Rule (SgmlLinkExtractor(allow=("ic=16_[1-128]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
