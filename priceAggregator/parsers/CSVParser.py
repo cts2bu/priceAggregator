@@ -10,4 +10,5 @@ class CSVParser():
         print "This won't ever be called"
 
     def getLink(self, row):
-        return row[2]
+        if row[2] != "link":
+            return row[2]

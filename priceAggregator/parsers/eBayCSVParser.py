@@ -10,6 +10,5 @@ class eBayCSVParser(CSVParser):
         mainPrice = row[0]
         if mainPrice == '':
             mainPrice = row[1].strip()
-        link = row[2]
         title = row[3]
-        return title + ' ' + mainPrice + ' ' + link
+        return title + ' ' + mainPrice

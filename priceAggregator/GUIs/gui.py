@@ -1,12 +1,11 @@
 __author__ = 'piammoradi'
 from Tkinter import *
 import csv, sqlite3
-from abc import ABCMeta
+from priceAggregator import HyperlinkManager
+import webbrowser
 from priceAggregator.parsers.AmazonCSVParser import AmazonCSVParser
 from priceAggregator.parsers.eBayCSVParser import eBayCSVParser
 from priceAggregator.parsers.WalmartCSVParser import WalmartCSVParser
-import tkHyperlinkManager
-import webbrowser
 
 class GUI(object):
     def __init__(self, name):
@@ -23,27 +22,34 @@ class GUI(object):
         for t in creader:
             self.c.execute("insert into " + self.name + " values (?, ?, ?, ?)", t)
 
+    def do_url(self, url):
+        webbrowser.open(url)
+
     def display_GUI(self):
+        url_list = []
         root = Tk()
-        root.title("hyperlink-1")
-
-        text = Text(root)
-        text.pack()
-
-        hyperlink = tkHyperlinkManager.HyperlinkManager(text)
-
-        getrow = []
+        root.wm_title("Table")
 
         for row in self.c.execute("select * from " + self.name):
-
-            getrow = AmazonCSVParser().printCSV(row)
-
-            def click1():
-                webbrowser.open_new(getrow[2])
             if self.name == 'amazon':
-                text.insert(INSERT, getrow[0], hyperlink.add(click1))
-                text.insert(INSERT, "\t\t")
-                text.insert(INSERT, getrow[1])
-                text.insert(INSERT, "\n\n")
+                url = AmazonCSVParser().getLink(row)
+                label = Label(root, text=AmazonCSVParser().printCSV(row))
+                label.configure(foreground="blue")
+                label.bind("<Button-1>",lambda e,url=url:self.do_url(url))
+                label.pack()
 
-        mainloop()
+            elif self.name == 'ebay':
+                url = eBayCSVParser().getLink(row)
+                label = Label(root, text=eBayCSVParser().printCSV(row))
+                label.configure(foreground="blue")
+                label.bind("<Button-1>",lambda e,url=url:self.do_url(url))
+                label.pack()
+
+            else:
+                url = "http://www.walmart.com" + WalmartCSVParser().getLink(row)
+                label = Label(root, text=WalmartCSVParser().printCSV(row))
+                label.configure(foreground="blue")
+                label.bind("<Button-1>",lambda e,url=url:self.do_url(url))
+                label.pack()
+
+        root.mainloop()

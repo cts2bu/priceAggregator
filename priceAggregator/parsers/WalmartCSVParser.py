@@ -10,6 +10,5 @@ class WalmartCSVParser(CSVParser):
         mainPrice = row[0][:len(row[0]) - 1]
         if mainPrice == '':
             mainPrice = row[1][:len(row[1]) - 1]
-        link = "http://walmart.com" + row[2]
         title = row[3]
-        return title + ' ' + mainPrice + ' ' + link
+        return title + ' ' + mainPrice
