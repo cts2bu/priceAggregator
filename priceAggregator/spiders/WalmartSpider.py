@@ -33,7 +33,7 @@ class WalmartSpider(CrawlSpider):
                    item['link'][0] = "www.walmart.com" + item['link'][0]
                    items.append(item)
            else:
-               item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
+               item['price2'] = site.xpath('div/div/div/div/div/div/span[@class="bigPriceText2"]/text()').extract()
                item['price'] = site.xpath('div/div/div/div/div/div/span[@class="bigPriceText2"]/text()').extract()
                item['link'] = site.xpath('div/div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink GridItemLink"]/@href').extract()
                item['title'] = site.xpath('div/div[@class="prodInfo"]/div[@class="prodInfoBox"]/a[@class="prodLink GridItemLink"]/@title').extract()
