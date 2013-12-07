@@ -1,7 +1,6 @@
 from scrapy.contrib.spiders import CrawlSpider,Rule
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-import os
 from priceAggregator.items import MacysItem
 
 class MacysSpider(CrawlSpider):

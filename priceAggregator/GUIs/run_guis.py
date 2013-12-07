@@ -42,5 +42,3 @@ class run_GUI():
         gui = WalmartGUI(root)
         gui.pack(side="top", fill="both", expand=True)
         root.mainloop()
-
-run_GUI().show_menu()
