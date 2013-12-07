@@ -26,22 +26,31 @@ class MainMenu():
         root.mainloop()
 
     def show_amazon(self):
-        root = Tk()
-        gui = AmazonGUI(root)
-        gui.pack(side="top", fill="both", expand=True)
-        root.mainloop()
+        try:
+            root = Tk()
+            gui = AmazonGUI(root)
+            gui.pack(side="top", fill="both", expand=True)
+            root.mainloop()
+        except IOError:
+            print "You must run a search first."
 
     def show_ebay(self):
-        root = Tk()
-        gui = eBayGUI(root)
-        gui.pack(side="top", fill="both", expand=True)
-        root.mainloop()
+        try:
+            root = Tk()
+            gui = eBayGUI(root)
+            gui.pack(side="top", fill="both", expand=True)
+            root.mainloop()
+        except IOError:
+            print "You must run a search first."
 
     def show_walmart(self):
-        root = Tk()
-        gui = WalmartGUI(root)
-        gui.pack(side="top", fill="both", expand=True)
-        root.mainloop()
+        try:
+            root = Tk()
+            gui = WalmartGUI(root)
+            gui.pack(side="top", fill="both", expand=True)
+            root.mainloop()
+        except IOError:
+            print "You must run a search first."
 
 if __name__ == "__main__":
     MainMenu().show_menu()
