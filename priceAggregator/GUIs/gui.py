@@ -34,7 +34,7 @@ class GUI(Frame):
         webbrowser.open(url)
 
     def populate(self):
-        csvfile = open("../spiders/" + self.name + "scrape.csv", 'rb')
+        csvfile = open("../main/" + self.name + "scrape.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:

@@ -3,6 +3,7 @@ from Tkinter import *
 from AmazonGUI import AmazonGUI
 from eBayGUI import eBayGUI
 from WalmartGUI import WalmartGUI
+
 class run_GUI():
     def show_menu(self):
         root = Tk()
