@@ -9,18 +9,20 @@ class WalmartSpider(CrawlSpider):
     name = "walmart"
     allowed_domains = ["walmart.com"]
     rules = (
-        Rule (SgmlLinkExtractor(allow=("ic=16_[1-128]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
-    , callback="parse_items", follow= True),
+        Rule (SgmlLinkExtractor(allow=("ic=16_[0-128]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
+    , callback="parse_start_url", follow= True),
     )
 
     def __init__(self, *a, **kw):
         super(WalmartSpider, self).__init__(*a, **kw)
         self.start_urls = [kw.get('start_url')]
 
+    def parse_start_url(self, response):
+        return self.parse_items(response)
+
     def parse_items(self, response):
         sel = Selector(response)
         sites = sel.xpath('//div[starts-with(@id,"i_")]')
-        print sites
         items = []
         for site in sites:
            item = WalMartItem()
@@ -30,5 +32,5 @@ class WalmartSpider(CrawlSpider):
            item['price'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            item['price2'] = site.xpath('div[@class="prodInfo"]/div[@class="prodInfoBox"]/div[@class="OnlinePriceAvail"]/div[@class="PriceContent"]/div[@class="PriceDisplay"]/div[@class="PriceCompare"]/div[@class="camelPrice"]/span[@class="bigPriceText2"]/text()').extract()
            if item['price'] or item['price2']:
-               items.append(item)
+                items.append(item)
         return items

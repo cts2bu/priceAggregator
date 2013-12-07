@@ -4,6 +4,7 @@ import os
 from Tkinter import *
 #from priceAggregator.GUIs import run_guis
 
+'''
 class Main():
     def __init__(self):
         self.urls = StartUrls("")
@@ -26,6 +27,12 @@ class Main():
         os.system('scrapy crawl walmart -a start_url="' + self.urls.walmarturl + '" -o walmart.csv -t csv --nolog')
 new_main = Main()
 new_main.display()
+'''
+
+input_search = raw_input("Search for items: ")
+urls = StartUrls(input_search)
+print "Running walmart spider..."
+os.system('scrapy crawl walmart -a start_url="' + urls.walmarturl + '" -o walmartscrape.csv -t csv')
 
 
 
