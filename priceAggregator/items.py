@@ -42,3 +42,4 @@ class WalmartItem(Item):
     title = Field()
     price = Field()
     link = Field()
+    price2 = Field()
