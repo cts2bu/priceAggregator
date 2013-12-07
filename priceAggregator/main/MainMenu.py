@@ -1,12 +1,11 @@
 __author__ = 'piammoradi'
 from Tkinter import *
-from AmazonGUI import AmazonGUI
-from eBayGUI import eBayGUI
-from WalmartGUI import WalmartGUI
+from priceAggregator.GUIs.AmazonGUI import AmazonGUI
+from priceAggregator.GUIs.eBayGUI import eBayGUI
+from priceAggregator.GUIs.WalmartGUI import WalmartGUI
 from priceAggregator.spiders.runspiders import RunSpiders
-#from priceAggregator.main.main import Main
 
-class run_GUI():
+class MainMenu():
     def show_menu(self):
         root = Tk()
         root.wm_title("Menu")
@@ -17,10 +16,11 @@ class run_GUI():
         b.pack()
         c = Button(root, text = "WalMart", command = lambda: self.show_walmart())
         c.pack()
+        separator = Frame(height=2, bd=1, relief=SUNKEN)
+        separator.pack(fill=X, padx=5, pady=5)
         e = Entry(root)
         e.pack()
         e.focus_set()
-        print e.get()
         b = Button(root, text = "Search", command =lambda: RunSpiders(e.get()).run_spiders())
         b.pack()
         root.mainloop()
@@ -43,4 +43,5 @@ class run_GUI():
         gui.pack(side="top", fill="both", expand=True)
         root.mainloop()
 
-run_GUI().show_menu()
+if __name__ == "__main__":
+    MainMenu().show_menu()
