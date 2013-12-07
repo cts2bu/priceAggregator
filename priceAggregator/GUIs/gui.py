@@ -2,9 +2,7 @@ from Tkinter import *
 import webbrowser
 import csv
 import sqlite3
-from priceAggregator.parsers.AmazonCSVParser import AmazonCSVParser
-from priceAggregator.parsers.eBayCSVParser import eBayCSVParser
-from priceAggregator.parsers.WalmartCSVParser import WalmartCSVParser
+from priceAggregator.parsers import AmazonCSVParser, eBayCSVParser, WalmartCSVParser
 
 class GUI(Frame):
     def __init__(self, root, name):
@@ -45,10 +43,8 @@ class GUI(Frame):
 
         if self.name == 'amazon':
             parser = AmazonCSVParser()
-
         elif self.name == 'ebay':
             parser = eBayCSVParser()
-
         else:
             parser = WalmartCSVParser()
 
