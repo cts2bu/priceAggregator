@@ -38,8 +38,7 @@ class AmazeItem(Item):
     title = Field()
     link = Field()
 
-class WalMartItem(Item):
+class WalmartItem(Item):
     title = Field()
     price = Field()
-    price2 = Field()
     link = Field()

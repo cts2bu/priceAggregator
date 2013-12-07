@@ -8,5 +8,5 @@ class StartUrls():
         url = "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords="+self.search
         self.amazonurl = url
 
-        url = "http://www.walmart.com/search/search-ng.do?ic=16_0&Find=Find&search_query="+self.search
+        url = "http://www.walmart.com/catalog/search-ng.gsp?search_redirect=false&dept=0&search_query="+self.search
         self.walmarturl = url
