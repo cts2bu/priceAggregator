@@ -24,4 +24,3 @@ class MacysSpider(CrawlSpider):
            item['title'] = site.xpath('span/text()').extract()
            items.append(item)
        return items
-
