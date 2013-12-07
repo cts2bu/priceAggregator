@@ -43,24 +43,16 @@ class GUI(Frame):
             if self.name == 'amazon':
                 url = AmazonCSVParser().getLink(row)
                 label = Label(self.frame, text = AmazonCSVParser().printCSV(row), relief = "solid")
-                label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
-                label.configure(foreground="blue", underline=True)
-                label.grid(row=i, column=1)
-                i = i + 1
             elif self.name == 'ebay':
                 url = eBayCSVParser().getLink(row)
                 label = Label(self.frame, text = eBayCSVParser().printCSV(row), relief = "solid")
-                label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
-                label.configure(foreground="blue", underline=True)
-                label.grid(row=i, column=1)
-                i = i + 1
             else:
                 url = WalmartCSVParser().getLink(row)
                 label = Label(self.frame, text = WalmartCSVParser().printCSV(row), relief = "solid")
-                label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
-                label.configure(foreground="blue", underline=True)
-                label.grid(row=i, column=1)
-                i = i + 1
+            label.bind("<Button-1>", lambda e, url=url:self.do_url(url))
+            label.configure(foreground="blue", underline=True)
+            label.grid(row=i, column=1)
+            i = i + 1
 
 
     def OnFrameConfigure(self, event):
