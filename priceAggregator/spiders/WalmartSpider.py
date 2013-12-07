@@ -40,4 +40,3 @@ class WalmartSpider(CrawlSpider):
                        item['link'][0] = "www.walmart.com" + item['link'][0]
                        items.append(item)
        return items
-
