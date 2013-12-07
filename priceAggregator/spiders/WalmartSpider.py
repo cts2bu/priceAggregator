@@ -6,16 +6,16 @@ from priceAggregator.items import WalMartItem
 from priceAggregator.spiders.starturls import StartUrls
 
 class WalmartSpider(CrawlSpider):
-    def __init__(self, startURLs):
-        start_urls = startURLs
     name = "walmart"
     allowed_domains = ["walmart.com"]
-    #start_urls = StartUrls.walmarturls
-
     rules = (
         Rule (SgmlLinkExtractor(allow=("ic=16_[1-128]\&*", ), restrict_xpaths=('//div/div[@id="bottomPagination"]/ul/li',))
     , callback="parse_items", follow= True),
     )
+
+    def __init__(self, *a, **kw):
+        super(WalmartSpider, self).__init__(*a, **kw)
+        self.start_urls = [kw.get('start_url')]
 
     def parse_items(self, response):
         sel = Selector(response)

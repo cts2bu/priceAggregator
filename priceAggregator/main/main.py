@@ -1,25 +1,19 @@
 __author__ = 'piammoradi'
 from priceAggregator.spiders.starturls import StartUrls
-from priceAggregator.spiders.AmazonSpider import AmazonSpider
-from scrapy.crawler import Crawler
-from priceAggregator import settings
-from twisted.internet import reactor
-from scrapy import signals
-from scrapy.utils.project import get_project_settings
-
-settings = get_project_settings()
+import os
+#from priceAggregator.GUIs import run_guis
 
 input_search = raw_input("Search for items: ")
 urls = StartUrls(input_search)
 
-spider = AmazonSpider(urls)
+print "Running amazon spider..."
+os.system('scrapy crawl amzn -a start_url="' + urls.amazonurl + '" -o amazonscrape.csv -t csv --nolog')
+print "Running ebay spider..."
+os.system('scrapy crawl ebay -a start_url="' + urls.ebayurl + '" -o ebay.csv -t csv --nolog')
+print "Running walmart spider..."
+os.system('scrapy crawl walmart -a start_url="' + urls.walmarturl + '" -o walmart.csv -t csv --nolog')
 
-crawler = Crawler(settings)
-crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
-crawler.configure()
-crawler.crawl(spider)
-crawler.start
-reactor.run()
+#run_guis.run_GUI().show_menu()
 
 
 

@@ -2,7 +2,6 @@ from Tkinter import *
 import webbrowser
 import csv
 import sqlite3
-import os
 from priceAggregator.parsers.AmazonCSVParser import AmazonCSVParser
 from priceAggregator.parsers.eBayCSVParser import eBayCSVParser
 from priceAggregator.parsers.WalmartCSVParser import WalmartCSVParser
@@ -35,13 +34,11 @@ class GUI(Frame):
         webbrowser.open(url)
 
     def populate(self):
-        the_path = "../" + self.name + ".csv"
-        csvfile = open(the_path, 'rb')
+        csvfile = open("../spiders/" + self.name + "scrape.csv", 'rb')
         creader = csv.reader(csvfile)
         creader.next()
         for t in creader:
             self.c.execute("insert into " + self.name + " values (?, ?, ?, ?)", t)
-        os.remove(the_path)
 
         i = 0
 

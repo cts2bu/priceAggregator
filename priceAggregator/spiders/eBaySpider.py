@@ -5,16 +5,16 @@ from priceAggregator.items import eBayItem
 from priceAggregator.spiders.starturls import StartUrls
 
 class eBaySpider(CrawlSpider):
-   def __init__(self, startURLs):
-       start_urls = startURLs
    name = "ebay"
    allowed_domains = ["ebay.com"]
-   #start_urls = StartUrls.ebayurls
-
    rules = (
         Rule (SgmlLinkExtractor(allow=("_pgn=[2-2]\&*", ), restrict_xpaths=('//td[@class="pages"]',))
     , callback="parse_start_url", follow= True),
     )
+
+   def __init__(self, *a, **kw):
+        super(eBaySpider, self).__init__(*a, **kw)
+        self.start_urls = [kw.get('start_url')]
 
    def parse_start_url(self, response):
         return self.parse_items(response)

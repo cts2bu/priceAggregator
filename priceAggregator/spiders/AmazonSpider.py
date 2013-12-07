@@ -6,18 +6,16 @@ from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from priceAggregator.items import AmazonItem
 
 class AmazonSpider(CrawlSpider):
-    def __init__(self, startURLs):
-        start_urls = startURLs
-
-
     name = "amzn"
     allowed_domains = ["amazon.com"]
-
-
     rules = (
             Rule (SgmlLinkExtractor(allow=("ref=sr_pg_[2-7]\?*", ), restrict_xpaths=('//span[@class="pagnRA"]',))
-        , callback="parse_start_url", follow= True),
-     )
+        , callback="parse_start_url", follow= True),)
+
+    def __init__(self, *a, **kw):
+        super(AmazonSpider, self).__init__(*a, **kw)
+        self.start_urls = [kw.get('start_url')]
+
 
     def parse_start_url(self, response):
         return self.parse_items(response)
@@ -35,6 +33,5 @@ class AmazonSpider(CrawlSpider):
            if item['price'] or item['price2']: #pre-filter items with no prices
                 items.append(item)
        return items
-
 
 
