@@ -12,4 +12,6 @@ class AmazonCSVParser(CSVParser):
             mainPrice = row[0][1:]
         link = row[2]
         title = row[3]
-        return title + ' ' + mainPrice + ' ' + link
+
+        newrow = [title, mainPrice, link]
+        return newrow

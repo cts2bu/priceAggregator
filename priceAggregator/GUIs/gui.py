@@ -5,6 +5,8 @@ from abc import ABCMeta
 from priceAggregator.parsers.AmazonCSVParser import AmazonCSVParser
 from priceAggregator.parsers.eBayCSVParser import eBayCSVParser
 from priceAggregator.parsers.WalmartCSVParser import WalmartCSVParser
+import tkHyperlinkManager
+import webbrowser
 
 class GUI(object):
     def __init__(self, name):
@@ -23,45 +25,25 @@ class GUI(object):
 
     def display_GUI(self):
         root = Tk()
-        root.wm_title("Table")
-        l = Label(root, text = "title, price, link")
-        l.pack()
-
-        frame = Frame(root, bd=2, relief=SUNKEN)
-
-        scrollbar = Scrollbar(frame)
-        scrollbar.pack(side=RIGHT, fill=Y)
-
-        listbox = Listbox(frame, bd=0, yscrollcommand=scrollbar.set)
-        listbox.config(width = 225, height = 200)
-        listbox.pack()
-
-        scrollbar.config(command=listbox.yview)
-        frame.pack()
+        root.title("hyperlink-1")
 
         text = Text(root)
         text.pack()
 
+        hyperlink = tkHyperlinkManager.HyperlinkManager(text)
 
-        #hyperlink = HyperlinkManager(listbox)
+        getrow = []
 
         for row in self.c.execute("select * from " + self.name):
+
+            getrow = AmazonCSVParser().printCSV(row)
+
+            def click1():
+                webbrowser.open_new(getrow[2])
             if self.name == 'amazon':
-                listbox.insert(END, AmazonCSVParser().printCSV(row))
+                text.insert(INSERT, getrow[0], hyperlink.add(click1))
+                text.insert(INSERT, "\t\t")
+                text.insert(INSERT, getrow[1])
+                text.insert(INSERT, "\n\n")
 
-            elif self.name == 'ebay':
-                a = Label(root, text=eBayCSVParser().printCSV(row))
-                a.pack()
-                separator = Frame(height=2, bd=1, relief=SUNKEN)
-                separator.pack(fill=X, padx=5, pady=5)
-
-            else:
-                a = Label(root, text=WalmartCSVParser().printCSV(row))
-                a.pack()
-        root.mainloop()
-
-
-# if __name__ == '__main__':
-#     ebay = ebay_gui()
-#     ebay.insert_into_table()
-#     ebay.display_GUI()
+        mainloop()
