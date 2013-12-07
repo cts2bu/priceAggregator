@@ -29,7 +29,8 @@ class GUI(object):
     def display_GUI(self):
 
         root = Tk()
-        root.wm_title("Table")
+        #root.wm_title("Table")
+        '''
         sizex = 800
         sizey = 600
         posx  = 100
@@ -48,20 +49,19 @@ class GUI(object):
         canvas.pack(side="left")
         canvas.create_window((0,0),window=frame,anchor='nw')
         frame.bind("<Configure>",canvas.configure(scrollregion=canvas.bbox("all"),width=750,height=500))
-
-
         '''
+
         scrollbar = Scrollbar(root)
         scrollbar.pack(side=RIGHT, fill=Y)
 
         listbox = Listbox(root)
         listbox.config(width = 500, height = 500)
         listbox.pack()
-        '''
 
-        i = 0
+
         for row in self.c.execute("select * from " + self.name):
             if self.name == 'amazon':
+                '''
                 url = AmazonCSVParser().getLink(row)
                 Label(frame, text=i).grid(row=i, column=0)
                 l = Label(frame, text=AmazonCSVParser().printCSV(row))
@@ -69,15 +69,13 @@ class GUI(object):
                 l.configure(foreground="blue")
                 l.grid(row=i, column=1)
                 i = i + 1
-
-
                 '''
+
                 url = AmazonCSVParser().getLink(row)
                 l = Label(root, text=AmazonCSVParser().printCSV(row))
                 l.bind("<Button-1>", lambda e, url=url:self.do_url(url))
                 l.configure(foreground="blue")
                 listbox.insert(END, l)
-                '''
 
             elif self.name == 'ebay':
                 url = eBayCSVParser().getLink(row)
@@ -93,11 +91,9 @@ class GUI(object):
                 label.bind("<Button-1>",lambda e,url=url:self.do_url(url))
                 #label.pack()
 
-        '''
         # attach listbox to scrollbar
         listbox.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=listbox.yview)
-        '''
 
 
         root.mainloop()
